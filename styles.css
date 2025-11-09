@@ -1,0 +1,166 @@
+Here you go — a complete **`styles.css`** that pairs perfectly with the `index.html` and `app.js` I shared. Just save as `styles.css` in the same folder.
+
+```css
+:root{
+  --bg:#0e1320;
+  --bg2:#0b1020;
+  --card:#141a2a;
+  --panel:#0f1524;
+  --muted:#9fb3c8;
+  --text:#e9f1fb;
+  --accent:#6cb9ff;
+  --border:#22304a;
+  --good:#19c37d;
+  --warn:#ffcc00;
+  --bad:#ff6b6b;
+}
+
+/* Base */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font:14px system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  color:var(--text);
+}
+
+/* Header */
+header{
+  padding:20px;
+  border-bottom:1px solid var(--border);
+  background:rgba(20,26,42,.6);
+  backdrop-filter:saturate(140%) blur(8px);
+  position:sticky; top:0; z-index:10;
+}
+h1{ margin:0 0 6px; font-size:22px; }
+.sub{ color:var(--muted); }
+
+/* Layout */
+.container{ max-width:1100px; margin:18px auto; padding:0 16px; }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 8px 26px rgba(0,0,0,.2);
+}
+.row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.right{ display:flex; justify-content:flex-end; gap:10px; width:100%; }
+.center{ text-align:center; }
+.hr{ height:1px; background:var(--border); margin:12px 0; }
+
+/* Tabs */
+.tabs{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 16px; }
+.tab{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  cursor:pointer;
+  background:var(--card);
+  color:var(--text);
+  transition:all .15s ease;
+}
+.tab:hover{ transform:translateY(-1px); }
+.tab.active{ outline:2px solid var(--accent); }
+
+/* Forms & Controls */
+label{ display:flex; gap:8px; align-items:center; color:var(--muted); }
+select,
+input[type="number"],
+input[type="text"]{
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:10px;
+  min-width:120px;
+}
+input[type="text"]{ min-width:180px; }
+
+.grid3{ display:grid; grid-template-columns:repeat(3, minmax(160px,1fr)); gap:10px; }
+.pill{
+  display:inline-block;
+  padding:2px 8px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* Buttons */
+button{
+  padding:9px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  cursor:pointer;
+  transition:transform .06s ease, background .15s ease;
+}
+button:hover{ background:#13203a; }
+button:active{ transform:translateY(1px); }
+button.primary{ background:var(--accent); color:#021520; border-color:#3a89cc; }
+button.ghost{ background:transparent; }
+button.good{ background:var(--good); color:#002414; border-color:#0a7f51; }
+button.warn{ background:var(--warn); color:#2a2300; border-color:#a88a00; }
+button.bad{ background:var(--bad); color:#230000; border-color:#a33a3a; }
+
+/* Tables */
+table{ width:100%; border-collapse:collapse; margin-top:10px; border-radius:10px; overflow:hidden; }
+th,td{ border:1px solid var(--border); padding:8px; text-align:left; vertical-align:middle; }
+th{ background:#0f1628; color:var(--text); }
+td input[type="number"]{ width:100%; padding:6px; }
+
+#marksTable{ margin-top:8px; }
+
+/* Text & Badges */
+.muted{ color:var(--muted); }
+.mono{ font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.badge{
+  padding:2px 8px; border-radius:8px; font-size:12px;
+  border:1px solid var(--border); background:#142039; color:var(--muted);
+}
+.score{ font-weight:700; }
+.goodtxt{ color:var(--good); }
+.warntxt{ color:var(--warn); }
+.badtxt{ color:var(--bad); }
+.hidden{ display:none !important; }
+
+/* Panels */
+#coPanel{ margin-top:12px; background:var(--panel); }
+
+/* Output blocks */
+pre{
+  background:var(--bg2);
+  color:#d4f0ff;
+  padding:12px;
+  border-radius:12px;
+  overflow:auto;
+  border:1px solid var(--border);
+}
+
+/* Scrollbar (nice but subtle) */
+*::-webkit-scrollbar{ height:10px; width:10px; }
+*::-webkit-scrollbar-thumb{ background:#1b2742; border-radius:10px; border:2px solid #10192e; }
+*::-webkit-scrollbar-track{ background:#0c1326; }
+
+/* Print styles */
+@media print{
+  header, .tabs, .no-print, #renderMS, #exportCSV, #renderRC, #printRC { display:none !important; }
+  body{ background:#fff; color:#000; }
+  .card{ box-shadow:none; border:1px solid #999; background:#fff; }
+  .container{ max-width:100%; margin:0; padding:0; }
+  .print-card{ page-break-after:always; }
+  table, th, td{ border-color:#bbb !important; }
+}
+
+/* Small screens */
+@media (max-width:640px){
+  .grid3{ grid-template-columns:1fr; }
+  select, input[type="number"], input[type="text"]{ min-width:unset; width:100%; }
+  .row{ gap:8px; }
+}
+```
